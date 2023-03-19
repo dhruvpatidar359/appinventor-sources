@@ -760,7 +760,7 @@ public final class MockForm extends MockContainer {
       case PROPERTY_NAME_ACCENT_COLOR:
       case PROPERTY_NAME_THEME:
       case PROPERTY_NAME_DEFAULTFILESCOPE: {
-        return editor.isScreen1();
+        return false;
       }
 
       default: {

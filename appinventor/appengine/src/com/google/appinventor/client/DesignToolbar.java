@@ -23,6 +23,7 @@ import com.google.appinventor.client.widgets.DropDownButton.DropDownItem;
 
 import com.google.appinventor.client.widgets.Toolbar;
 
+import com.google.appinventor.client.wizards.AppPropertiesWizard;
 import com.google.appinventor.common.version.AppInventorFeatures;
 
 import com.google.appinventor.shared.rpc.RpcResult;
@@ -195,6 +196,8 @@ public class DesignToolbar extends Toolbar {
       addButton(new ToolbarItem(WIDGET_NAME_SENDTOGALLERY,
           MESSAGES.publishToGalleryButton(), new SendToGalleryAction()));
     }
+    addButton(new ToolbarItem("ProjectSettings",
+            MESSAGES.changeProjectSettings(), new ChangeProjectSettings()));
 
     addButton(new ToolbarItem(WIDGET_NAME_SWITCH_TO_FORM_EDITOR,
         MESSAGES.switchToFormEditorButton(), new SwitchToFormEditorAction()), true);
@@ -594,4 +597,12 @@ public class DesignToolbar extends Toolbar {
     }
   }
 
+  private class ChangeProjectSettings implements Command {
+    @Override
+    public void execute() {
+      AppPropertiesWizard projectPropertiesWizard = new AppPropertiesWizard("Project Settings",true,false);
+      projectPropertiesWizard.center();
+
+    }
+  }
 }
