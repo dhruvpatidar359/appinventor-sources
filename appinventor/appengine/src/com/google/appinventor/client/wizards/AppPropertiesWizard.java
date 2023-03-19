@@ -10,11 +10,13 @@ import com.google.appinventor.client.widgets.LabeledTextBox;
 
 
 import com.google.appinventor.client.widgets.properties.ColorChoicePropertyEditor;
+import com.google.appinventor.shared.rpc.ServerLayout;
 import com.google.common.collect.Lists;
 import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.DeferredCommand;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.CheckBox;
+import com.google.gwt.user.client.ui.FileUpload;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -37,7 +39,7 @@ public class AppPropertiesWizard extends Wizard{
     private LabeledTextBox tutorialUrl;
     private LabeledTextBox versionCode;
     private LabeledTextBox versionName;
-    private LabeledTextBox icon;
+    private Label icon;
     private Label labelAccentColor;
     private  Label labelDefaultFileScope;
 
@@ -62,17 +64,18 @@ public class AppPropertiesWizard extends Wizard{
 
 
        checkBoxShowListAsJson = new CheckBox();
-       labelShowListAsJson = new Label("ShowListsAsJson");
-       tutorialUrl = new LabeledTextBox("TutorailURL");
-       versionCode = new LabeledTextBox("VersionCode");
-       versionName = new LabeledTextBox("VersionName");
-       labelTheme = new Label("Theme");
-       labelSizing = new Label("Sizing");
-       icon = new LabeledTextBox("Icon");
-       labelPrimaryColor = new Label("PrimaryColor");
-       labelPrimaryColorDark = new Label("PrimaryColorDark");
-       labelAccentColor = new Label("AccentColor");
-       labelDefaultFileScope = new Label("DefaultFileScope");
+       labelShowListAsJson = new Label(MESSAGES.listAsJson());
+       tutorialUrl = new LabeledTextBox(MESSAGES.tutorialURL());
+       versionCode = new LabeledTextBox(MESSAGES.versionCode());
+       versionName = new LabeledTextBox(MESSAGES.versionName());
+       labelTheme = new Label(MESSAGES.theme());
+       labelSizing = new Label(MESSAGES.sizing());
+       icon = new Label(MESSAGES.icon());
+       labelPrimaryColor = new Label(MESSAGES.primaryColor());
+       labelPrimaryColorDark = new Label(MESSAGES.primaryColorDark());
+       labelAccentColor = new Label(MESSAGES.accentColor());
+       labelDefaultFileScope = new Label(MESSAGES.defaultFileScope());
+
 
         // DropDown for the Project Theme Property
         List<DropDownButton.DropDownItem> items1 = Lists.newArrayList();
@@ -224,7 +227,9 @@ public class AppPropertiesWizard extends Wizard{
         dropDownAccentColor.setStylePrimaryName("ode-ColorChoicePropertyEditor");
 
 
-
+        final FileUpload uploadWiget = new FileUpload();
+        uploadWiget.getElement().setAttribute("accept", ".jpg");
+        uploadWiget.setName("Upload Icon");
 
 
         VerticalPanel page = new VerticalPanel();
@@ -239,6 +244,7 @@ public class AppPropertiesWizard extends Wizard{
 
         HorizontalPanel subPage2 = new HorizontalPanel();
         subPage2.add(icon);
+        subPage2.add(uploadWiget);
         subPage2.add(tutorialUrl);
 
 
@@ -264,9 +270,15 @@ public class AppPropertiesWizard extends Wizard{
         subPage5.add(labelDefaultFileScope);
         subPage5.add(dropDownDefaultFileScope);
 
+
+
+
+
         VerticalPanel subPage6 = new VerticalPanel();
         subPage6.add(labelShowListAsJson);
         subPage6.add(checkBoxShowListAsJson);
+
+
 
 
 
